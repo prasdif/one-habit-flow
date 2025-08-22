@@ -1,13 +1,45 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState } from 'react';
+import LandingPage from './LandingPage';
+import Dashboard from './Dashboard';
+import UpgradePage from './UpgradePage';
+
+type AppState = 'landing' | 'dashboard' | 'upgrade';
 
 const Index = () => {
+  const [currentView, setCurrentView] = useState<AppState>('landing');
+
+  const handleGetStarted = () => {
+    // In real app, this would handle authentication
+    setCurrentView('dashboard');
+  };
+
+  const handleUpgrade = () => {
+    setCurrentView('upgrade');
+  };
+
+  const handleBackToDashboard = () => {
+    setCurrentView('dashboard');
+  };
+
+  const handleLogout = () => {
+    setCurrentView('landing');
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <>
+      {currentView === 'landing' && (
+        <LandingPage onGetStarted={handleGetStarted} />
+      )}
+      {currentView === 'dashboard' && (
+        <Dashboard 
+          onUpgrade={handleUpgrade}
+          onLogout={handleLogout}
+        />
+      )}
+      {currentView === 'upgrade' && (
+        <UpgradePage onBack={handleBackToDashboard} />
+      )}
+    </>
   );
 };
 
