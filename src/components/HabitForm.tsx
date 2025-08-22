@@ -68,22 +68,22 @@ export default function HabitForm({ onSave, onCancel }: HabitFormProps) {
                 <Target className="w-4 h-4 mr-2" />
                 What habit do you want to build?
               </Label>
-              <Input
+                <Input
                 id="habit-name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g., Meditate for 5 minutes"
-                className="h-12"
+                className="h-12 md:h-14 min-h-[48px]"
                 required
               />
             </div>
 
             {/* Quick Suggestions */}
-            <div className="space-y-3">
+            <div className="space-y-2 md:space-y-3">
               <Label className="text-sm font-medium text-muted-foreground">
                 Popular suggestions:
               </Label>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid gap-2 md:grid-cols-2">
                 {habitSuggestions.map((suggestion) => (
                   <Button
                     key={suggestion}
@@ -91,7 +91,7 @@ export default function HabitForm({ onSave, onCancel }: HabitFormProps) {
                     variant="outline"
                     size="sm"
                     onClick={() => setName(suggestion)}
-                    className="justify-start text-left h-auto py-2 px-3"
+                    className="justify-start text-left h-auto py-2 md:py-3 px-3 text-sm min-h-[44px]"
                   >
                     {suggestion}
                   </Button>
@@ -160,19 +160,19 @@ export default function HabitForm({ onSave, onCancel }: HabitFormProps) {
             </div>
 
             {/* Action Buttons */}
-            <div className="flex gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row gap-3 md:gap-4 pt-4">
               <Button
                 type="button"
                 variant="outline"
                 onClick={onCancel}
-                className="flex-1"
+                className="flex-1 min-h-[48px]"
               >
                 Cancel
               </Button>
               <Button
                 type="submit"
                 disabled={!name.trim()}
-                className="flex-1 bg-primary hover:bg-primary/90"
+                className="flex-1 bg-primary hover:bg-primary/90 min-h-[48px]"
               >
                 Start Rewiring
               </Button>

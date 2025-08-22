@@ -90,31 +90,31 @@ export default function HabitTracker() {
         <CardContent className="space-y-6">
           {/* Habit Name */}
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-gradient mb-2">
+            <h2 className="text-xl md:text-2xl font-bold text-gradient mb-2">
               {currentHabit.name}
             </h2>
-            <p className="text-muted-foreground">
+            <p className="text-sm md:text-base text-muted-foreground">
               Your brain is ready to strengthen this pathway
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <Button
               onClick={handleMarkDone}
               disabled={currentHabit.isCompletedToday}
-              className="flex-1 h-12 bg-success hover:bg-success/90 text-success-foreground"
+              className="flex-1 h-12 md:h-14 bg-success hover:bg-success/90 text-success-foreground min-h-[48px]"
             >
-              <Check className="w-5 h-5 mr-2" />
+              <Check className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               {currentHabit.isCompletedToday ? 'Completed!' : 'Mark Done'}
             </Button>
             <Button
               onClick={handleMarkMissed}
               disabled={currentHabit.isCompletedToday}
               variant="outline"
-              className="flex-1 h-12 border-destructive/50 text-destructive hover:bg-destructive/10"
+              className="flex-1 h-12 md:h-14 border-destructive/50 text-destructive hover:bg-destructive/10 min-h-[48px]"
             >
-              <X className="w-5 h-5 mr-2" />
+              <X className="w-4 h-4 md:w-5 md:h-5 mr-2" />
               Missed Today
             </Button>
           </div>
@@ -148,27 +148,27 @@ export default function HabitTracker() {
 
       {/* Distraction Modal */}
       {showDistractionModal && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
-          <Card className="w-full max-w-md">
-            <CardHeader>
-              <CardTitle>What distracted you today?</CardTitle>
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-3">
+          <Card className="w-full max-w-md mx-auto">
+            <CardHeader className="pb-4">
+              <CardTitle className="text-lg md:text-xl">What distracted you today?</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-3">
+            <CardContent className="space-y-2 md:space-y-3">
               {distractionOptions.map((option) => (
                 <Button
                   key={option.id}
                   onClick={() => handleDistraction(option)}
                   variant="outline"
-                  className="w-full justify-start h-12"
+                  className="w-full justify-start h-12 md:h-14 min-h-[48px]"
                 >
-                  <span className="text-lg mr-3">{option.icon}</span>
-                  {option.label}
+                  <span className="text-base md:text-lg mr-2 md:mr-3">{option.icon}</span>
+                  <span className="text-sm md:text-base">{option.label}</span>
                 </Button>
               ))}
               <Button
                 onClick={() => setShowDistractionModal(false)}
                 variant="ghost"
-                className="w-full mt-4"
+                className="w-full mt-3 md:mt-4 min-h-[44px]"
               >
                 Cancel
               </Button>

@@ -29,29 +29,30 @@ export default function Dashboard({ onUpgrade, onLogout }: DashboardProps) {
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-0 z-40">
-        <div className="container mx-auto px-4 py-4">
+        <div className="container mx-auto px-3 py-3">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-                <Brain className="w-5 h-5 text-primary-foreground" />
+              <div className="w-7 h-7 md:w-8 md:h-8 bg-primary rounded-lg flex items-center justify-center">
+                <Brain className="w-4 h-4 md:w-5 md:h-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold text-gradient">Rewire Brain</span>
+              <span className="text-lg md:text-xl font-bold text-gradient">Rewire Brain</span>
             </div>
             
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-1 md:space-x-2">
               <Button 
                 variant="outline" 
                 size="sm"
                 onClick={onUpgrade}
-                className="bg-gradient-to-r from-warning/10 to-warning/20 border-warning/30 text-warning hover:bg-warning/10"
+                className="bg-gradient-to-r from-warning/10 to-warning/20 border-warning/30 text-warning hover:bg-warning/10 px-2 md:px-3"
               >
-                <Crown className="w-4 h-4 mr-2" />
-                Upgrade to Pro
+                <Crown className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                <span className="hidden sm:inline">Upgrade to Pro</span>
+                <span className="sm:hidden">Pro</span>
               </Button>
-              <Button variant="ghost" size="sm" onClick={handleEditHabit}>
+              <Button variant="ghost" size="sm" onClick={handleEditHabit} className="p-2">
                 <Settings className="w-4 h-4" />
               </Button>
-              <Button variant="ghost" size="sm" onClick={onLogout}>
+              <Button variant="ghost" size="sm" onClick={onLogout} className="p-2">
                 <LogOut className="w-4 h-4" />
               </Button>
             </div>
@@ -60,15 +61,15 @@ export default function Dashboard({ onUpgrade, onLogout }: DashboardProps) {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
+      <main className="container mx-auto px-3 py-4 md:py-8 max-w-4xl">
         {currentView === 'tracker' && hasHabit && (
           <div className="space-y-8">
             {/* Welcome Message */}
             <div className="text-center">
-              <h1 className="text-3xl font-bold text-gradient mb-2">
+              <h1 className="text-2xl md:text-3xl font-bold text-gradient mb-2">
                 Welcome back, Brain Rewirer!
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-sm md:text-base text-muted-foreground">
                 Your focused journey to lasting change continues today.
               </p>
             </div>
@@ -81,11 +82,11 @@ export default function Dashboard({ onUpgrade, onLogout }: DashboardProps) {
               <CardHeader>
                 <CardTitle>Quick Actions</CardTitle>
               </CardHeader>
-              <CardContent className="flex gap-4">
+              <CardContent className="flex flex-col sm:flex-row gap-3 md:gap-4">
                 <Button 
                   onClick={handleEditHabit}
                   variant="outline" 
-                  className="flex-1"
+                  className="flex-1 min-h-[44px]"
                 >
                   <Plus className="w-4 h-4 mr-2" />
                   Change Habit
@@ -93,10 +94,11 @@ export default function Dashboard({ onUpgrade, onLogout }: DashboardProps) {
                 <Button 
                   onClick={onUpgrade}
                   variant="outline"
-                  className="flex-1 bg-gradient-to-r from-warning/10 to-warning/20 border-warning/30 text-warning hover:bg-warning/10"
+                  className="flex-1 bg-gradient-to-r from-warning/10 to-warning/20 border-warning/30 text-warning hover:bg-warning/10 min-h-[44px]"
                 >
                   <Crown className="w-4 h-4 mr-2" />
-                  View Pro Features
+                  <span className="hidden sm:inline">View Pro Features</span>
+                  <span className="sm:hidden">Pro Features</span>
                 </Button>
               </CardContent>
             </Card>
@@ -106,10 +108,10 @@ export default function Dashboard({ onUpgrade, onLogout }: DashboardProps) {
         {currentView === 'form' && (
           <div className="space-y-8">
             <div className="text-center">
-              <h1 className="text-3xl font-bold text-gradient mb-2">
+              <h1 className="text-2xl md:text-3xl font-bold text-gradient mb-2">
                 {hasHabit ? 'Change Your Focus' : 'Choose Your First Habit'}
               </h1>
-              <p className="text-muted-foreground">
+              <p className="text-sm md:text-base text-muted-foreground">
                 {hasHabit 
                   ? 'Ready to rewire a different neural pathway?' 
                   : 'Select one habit to start your brain transformation.'
