@@ -33,15 +33,15 @@ export default function BrainVisualization({ streakCount, className = "" }: Brai
   }, [streakCount]);
 
   return (
-    <div className={`relative w-full h-64 rounded-lg bg-card/50 border border-border overflow-hidden ${className}`}>
+    <div className={`relative w-full h-48 rounded-lg bg-card/50 border border-border overflow-hidden sm:h-56 lg:h-64 ${className}`}>
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-accent/10" />
       
       {/* Neural Network Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <svg width="100%" height="100%" className="text-primary/30">
           <defs>
-            <pattern id="neural-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <circle cx="20" cy="20" r="1" fill="currentColor" />
+            <pattern id="neural-grid" width="30" height="30" patternUnits="userSpaceOnUse" className="sm:w-40 sm:h-40">
+              <circle cx="15" cy="15" r="1" fill="currentColor" />
             </pattern>
           </defs>
           <rect width="100%" height="100%" fill="url(#neural-grid)" />
@@ -90,13 +90,13 @@ export default function BrainVisualization({ streakCount, className = "" }: Brai
       })}
 
       {/* Streak Counter Overlay */}
-      <div className="absolute bottom-4 right-4 bg-background/80 backdrop-blur-sm rounded-lg px-4 py-2">
-        <div className="text-sm text-muted-foreground">Neural Connections</div>
-        <div className="text-2xl font-bold text-gradient">{streakCount}</div>
+      <div className="absolute bottom-3 right-3 bg-background/80 backdrop-blur-sm rounded-lg px-3 py-2 sm:bottom-4 sm:right-4 sm:px-4">
+        <div className="text-xs text-muted-foreground sm:text-sm">Neural Connections</div>
+        <div className="text-xl font-bold text-gradient sm:text-2xl">{streakCount}</div>
       </div>
 
       {/* Progress Message */}
-      <div className="absolute top-4 left-4 text-sm text-muted-foreground">
+      <div className="absolute top-3 left-3 text-xs text-muted-foreground sm:top-4 sm:left-4 sm:text-sm">
         {streakCount === 0 && "Start building your neural pathways"}
         {streakCount > 0 && streakCount < 5 && "Creating new connections..."}
         {streakCount >= 5 && streakCount < 10 && "Pathways strengthening..."}

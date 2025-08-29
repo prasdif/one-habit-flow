@@ -76,13 +76,13 @@ export default function HabitTracker() {
       <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
         <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
-            <CardTitle className="text-xl font-semibold">Today's Focus</CardTitle>
-            <Badge variant="secondary" className="px-3 py-1">
+            <CardTitle className="text-xl font-semibold sm:text-2xl">Today's Focus</CardTitle>
+            <Badge variant="secondary" className="px-3 py-1.5 text-sm">
               <Zap className="w-3 h-3 mr-1" />
               Day {currentHabit.streak + 1}
             </Badge>
           </div>
-          <div className="text-sm text-muted-foreground flex items-center">
+          <div className="text-sm text-muted-foreground flex items-center sm:text-base">
             <Calendar className="w-4 h-4 mr-2" />
             {today}
           </div>
@@ -90,42 +90,42 @@ export default function HabitTracker() {
         <CardContent className="space-y-6">
           {/* Habit Name */}
           <div className="text-center">
-            <h2 className="text-xl md:text-2xl font-bold text-gradient mb-2">
+            <h2 className="text-2xl font-bold text-gradient mb-3 sm:text-3xl lg:text-4xl">
               {currentHabit.name}
             </h2>
-            <p className="text-sm md:text-base text-muted-foreground">
+            <p className="text-base text-muted-foreground sm:text-lg">
               Your brain is ready to strengthen this pathway
             </p>
           </div>
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+          <div className="flex flex-col gap-4 sm:flex-row">
             <Button
               onClick={handleMarkDone}
               disabled={currentHabit.isCompletedToday}
-              className="flex-1 h-12 md:h-14 bg-success hover:bg-success/90 text-success-foreground min-h-[48px]"
+              className="flex-1 h-14 bg-success hover:bg-success/90 text-success-foreground text-lg font-semibold min-h-[56px]"
             >
-              <Check className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+              <Check className="w-5 h-5 mr-2" />
               {currentHabit.isCompletedToday ? 'Completed!' : 'Mark Done'}
             </Button>
             <Button
               onClick={handleMarkMissed}
               disabled={currentHabit.isCompletedToday}
               variant="outline"
-              className="flex-1 h-12 md:h-14 border-destructive/50 text-destructive hover:bg-destructive/10 min-h-[48px]"
+              className="flex-1 h-14 border-destructive/50 text-destructive hover:bg-destructive/10 text-lg font-semibold min-h-[56px]"
             >
-              <X className="w-4 h-4 md:w-5 md:h-5 mr-2" />
+              <X className="w-5 h-5 mr-2" />
               Missed Today
             </Button>
           </div>
 
           {/* Streak Counter */}
-          <div className="text-center bg-muted/50 rounded-lg p-4">
-            <div className="text-sm text-muted-foreground mb-1">Current Streak</div>
-            <div className="text-4xl font-bold text-gradient">
+          <div className="text-center bg-muted/50 rounded-lg p-6">
+            <div className="text-sm text-muted-foreground mb-2 sm:text-base">Current Streak</div>
+            <div className="text-5xl font-bold text-gradient mb-2 sm:text-6xl">
               {currentHabit.streak}
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-base text-muted-foreground sm:text-lg">
               {currentHabit.streak === 0 && "Ready to start"}
               {currentHabit.streak === 1 && "Great start!"}
               {currentHabit.streak > 1 && currentHabit.streak < 7 && "Building momentum"}
@@ -139,7 +139,7 @@ export default function HabitTracker() {
       {/* Brain Visualization */}
       <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
         <CardHeader>
-          <CardTitle>Neural Network Progress</CardTitle>
+          <CardTitle className="text-lg sm:text-xl">Neural Network Progress</CardTitle>
         </CardHeader>
         <CardContent>
           <BrainVisualization streakCount={currentHabit.streak} />
@@ -148,27 +148,27 @@ export default function HabitTracker() {
 
       {/* Distraction Modal */}
       {showDistractionModal && (
-        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-3">
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
           <Card className="w-full max-w-md mx-auto">
             <CardHeader className="pb-4">
-              <CardTitle className="text-lg md:text-xl">What distracted you today?</CardTitle>
+              <CardTitle className="text-xl sm:text-2xl">What distracted you today?</CardTitle>
             </CardHeader>
-            <CardContent className="space-y-2 md:space-y-3">
+            <CardContent className="space-y-3">
               {distractionOptions.map((option) => (
                 <Button
                   key={option.id}
                   onClick={() => handleDistraction(option)}
                   variant="outline"
-                  className="w-full justify-start h-12 md:h-14 min-h-[48px]"
+                  className="w-full justify-start h-14 text-left min-h-[56px]"
                 >
-                  <span className="text-base md:text-lg mr-2 md:mr-3">{option.icon}</span>
-                  <span className="text-sm md:text-base">{option.label}</span>
+                  <span className="text-lg mr-3">{option.icon}</span>
+                  <span className="text-base">{option.label}</span>
                 </Button>
               ))}
               <Button
                 onClick={() => setShowDistractionModal(false)}
                 variant="ghost"
-                className="w-full mt-3 md:mt-4 min-h-[44px]"
+                className="w-full mt-4 min-h-[48px]"
               >
                 Cancel
               </Button>
